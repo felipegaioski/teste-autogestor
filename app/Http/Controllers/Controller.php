@@ -14,8 +14,7 @@ class Controller extends BaseController
     public function get() 
     { 
         if (auth()->check()) {
-            $user = auth()->user()->load('access_level');
-            return view('site.home', compact('user'));
+            return view('site.home');
         } else {
             return app(UserController::class)->loginPage();
         }
