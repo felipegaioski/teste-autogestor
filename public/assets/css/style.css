@@ -76,3 +76,29 @@ header .title {
 .form-container {
     width: 100vh;
 }
+
+.sidemenu-item {
+    text-decoration: none;
+}
+
+.bottom-fixed {
+    position: fixed;
+    bottom: 0;
+}
+
+.list-container {
+    overflow: hidden;
+    margin: 0 2rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.list-item-container {
+    padding: 0.5rem;
+}
+
+.list-header {
+    padding: 0.5rem;
+    background-color: #0d6efd;
+    color: #fff;
+}

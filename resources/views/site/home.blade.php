@@ -7,5 +7,4 @@
             {{-- @include('widgets.footer') --}}
         </div>
     </main>
-
 @endsection

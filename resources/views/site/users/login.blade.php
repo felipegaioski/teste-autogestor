@@ -1,8 +1,9 @@
-<aside>
-    <h1 class="d-none">AutoGestor</h1>
-    <div class="sidebar-logo d-flex justify-content-start mb-5">
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Layer_1" width="180"
-            viewBox="0 0 512 110.45">
+@extends('site.layout-not-logged')
+
+@section('content')
+    <div class="container d-flex flex-column justify-content-center align-items-center mt-5">
+        <div class="login-logo my-5">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Layer_1" width="500" viewBox="0 0 512 110.45">
             <defs>
                 <style>
                     .cls-1 {
@@ -79,38 +80,27 @@
                 </g>
             </g>
         </svg>
-    </div>
-    <div class="mb-5">
-        <div class="row">
-            <div class="col-2 d-flex justify-content-center align-items-center text-center pb-4">
-                <i class="fa-solid fa-user fa-lg"></i>
+        </div>
+        <div class="inner-container mt-5">
+            <div class="title d-flex justify-content-center">
+                <h1>Login</h1>
             </div>
-            <div class="col-10 justify-content-start align-items-end text-start">
-                <span class="user-name m-0 p-0 fs-5">{{ $user->name }}</span>
-                <p class="text-muted m-0 p-0">{{ $user->access_level_id ? $user->access_level->name : '' }}</p>
+            <div class="form-container">
+                <form action="{{ url('/usuarios/login') }}" method="POST">
+                    @csrf
+                    <div class="form-group mb-2">
+                        <label for="email">E-mail</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Digite o email do usuário">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="password">Senha</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Digite a senha">
+                    </div>
+                    <div class="form-group mb-2">
+                        <button type="submit" class="btn btn-primary">Entrar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    {{-- <hr> --}}
-    <div class="menu mt-5">
-        <a class="sidemenu-item" href="{{ url('/niveis-de-acesso') }}">
-            <div class="menu-item mb-2">
-                <h6 class="m-0">Níveis de Acesso</h6>
-            </div>
-        </a>
-        <a class="sidemenu-item" href="{{ url('/usuarios') }}">
-            <div class="menu-item mb-2">
-                <h6 class="m-0">Usuários</h6>
-            </div>
-        </a>
-    </div>
-    <div class="bottom-fixed mb-2">
-        <form action="{{ url('/usuarios/logout') }}" method="POST">
-            @csrf
-            <button type="submit" class="btn btn-primary sidemenu-item d-flex gap-2 justify-content-start align-items-center mb-2">
-                <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                <h6 class="m-0">Sair</h6>
-            </button>
-        </form>
-    </div>
-</aside>
+@endsection
