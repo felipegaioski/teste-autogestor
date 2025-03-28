@@ -21,7 +21,7 @@ Aplicação desenvolvida para o teste prático da empresa AutoGestor.
 
 - Clone o projeto. Caso use o Laragon, recomenda-se clonar o projeto na pasta www.
 - Execute o comando "composer i" ou "composer u" na pasta do projeto.
-- Carregue e execute o arquivo teste-autogestor.sql no seu gerenciador de bancos de dados para criar o banco de dados padrão da aplicação.
+- Carregue e execute o arquivo "autogestor_db.sql" no seu gerenciador de bancos de dados para criar o banco de dados padrão da aplicação.
 - Faça uma cópia do arquivo .env.example e renomeie-o para .env. No item "DB_DATABASE" insira o nome que deu ao banco de dados ao criá-lo.
 - Execute o comando "php artisan key:generate"
 - Caso esteja usando o Laragon, ligue-o. Caso contrário, execute o comando "php artisan serve" para iniciar o projeto.
