@@ -22,9 +22,19 @@ Aplicação desenvolvida para o teste prático da empresa AutoGestor.
 - Clone o projeto. Caso use o Laragon, recomenda-se clonar o projeto na pasta www.
 - Execute o comando "composer i" ou "composer u" na pasta do projeto.
 - Carregue e execute o arquivo teste-autogestor.sql no seu gerenciador de bancos de dados para criar o banco de dados padrão da aplicação.
-- Faça uma cópia do arquivo .env.exampl e renomeie-o para .env. No item "DB_DATABASE" insira o nome que deu ao banco de dados ao criá-lo.
-- Caso esteja usando o Laragon, ligue-o. Caso contrário, execute o comando ""php artisan serve" para iniciar o projeto.
+- Faça uma cópia do arquivo .env.example e renomeie-o para .env. No item "DB_DATABASE" insira o nome que deu ao banco de dados ao criá-lo.
+- Execute o comando "php artisan key:generate"
+- Caso esteja usando o Laragon, ligue-o. Caso contrário, execute o comando "php artisan serve" para iniciar o projeto.
 
 - Dois usuários estão criados por padrão. Um Administrador e outro Comum. Os logins são:
-    - Administrador: "admin" e senha "12345678";
-    - Comum: "comum" e senha "12345678";
+    - Administrador: email: "admin@admin.com", senha "12345678";
+    - Comum: email: "comum@teste.com", senha "12345678";
+
+## Informações
+
+- O sistema possibilita uma maneira dinâmica de criar e gerenciar (gerenciar envolve criar, editar, deletar) usuários, níveis de acesso, permissões e módulos. O Administrador possui por padrão o direito de visualizar e gerenciar usuários e níveis de acesso.
+- O Administrador pode criar novos níveis de acesso e gerenciar as permissões "Visualizar" e "Gerenciar" de cada um deles (Não é permitido, no entanto, que retire suas próprias permissões).
+- Há uma página 404 quando uma rota não é encontrada.
+- O acesso a cada página ou rota é verificado de acordo com as permissões concedidas a cada nível de acesso. Mesmo quando não há um link visível para a página ou rota, ela
+estará protegida contra acessos não autorizados.
+- As validações retornam toasts para melhor experiência do usuário.
