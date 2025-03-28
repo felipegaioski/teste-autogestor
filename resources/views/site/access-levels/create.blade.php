@@ -15,10 +15,6 @@
                             <input type="text" class="form-control" id="name" name="name" placeholder="Digite o nome do nível de acesso">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="description">Descrição</label>
-                            <input type="text" class="form-control" id="description" name="description" placeholder="Digite a descrição do nível de acesso">
-                        </div>
-                        <div class="form-group mb-2">
                             <button type="submit" class="btn btn-primary">Salvar</button>
                         </div>
                     </form>

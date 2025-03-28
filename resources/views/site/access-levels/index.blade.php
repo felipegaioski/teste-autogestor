@@ -12,11 +12,13 @@
                     <div class="name-container col-4">
                         <span class="m-0">Nome</span>
                     </div>
-                    <div class="email-container col-4">
+                    <div class="email-container col-2">
                         <span class="m-0">Qtd. de usuários</span>
                     </div>
-                    <div class="date-container col-3">
+                    <div class="date-container col-4">
                         <span class="m-0">Data de Criação</span>
+                    </div>
+                    <div class="date-container col-1">
                     </div>
                 </div>
                 @foreach($access_levels as $index => $access_level)
@@ -27,11 +29,18 @@
                         <div class="name-container col-4">
                             <span class="m-0">{{ $access_level->name }}</span>
                         </div>
-                        <div class="email-container col-4">
+                        <div class="email-container col-2">
                             <span class="m-0">{{ $access_level->users->count() }}</span>
                         </div>
-                        <div class="date-container col-3">
+                        <div class="date-container col-4">
                             <span class="m-0">{{ date('d/m/Y', strtotime($access_level->created_at)) }}</span>
+                        </div>
+                        <div class="date-container col-1">
+                            <a href="{{ url('niveis-de-acesso/' . $access_level->id . '/editar') }}">
+                                <button class="btn btn-primary">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+                            </a>
                         </div>
                     </div>
                     @if ($access_levels->count() > 1 && $index < $access_levels->count() - 1)

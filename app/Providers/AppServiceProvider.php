@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer('*', function ($view) {
             if (Auth::check()) {
-                $user = Auth::user()->load('access_level');
+                $user = Auth::user()->load('access_level.permissions');
                 $view->with('user', $user);
             }
         });

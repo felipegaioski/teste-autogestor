@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\AccessLevel;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
@@ -58,6 +59,12 @@ class UserController extends Controller
     public function loginPage()
     {
         return view('site.users.login');
+    }
+
+    public function createPage()
+    {
+        $access_levels = AccessLevel::all();
+        return view('site.users.create', compact('access_levels'));
     }
 
     public function logout()

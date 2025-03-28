@@ -1,3 +1,43 @@
+@php
+    $categories = [
+        [
+            'name' => 'Usuários',
+            'type' => 'users',
+            'route' => '/usuarios',
+        ],
+        [
+            'name' => 'Níveis de Acesso',
+            'type' => 'access_levels',
+            'route' => '/niveis-de-acesso',
+        ],
+        [
+            'name' => 'Produtos',
+            'type' => 'products',
+            'route' => '/produtos',
+        ],
+        [
+            'name' => 'Categorias',
+            'type' => 'categories',
+            'route' => '/categorias',
+        ],
+        [
+            'name' => 'Marcas',
+            'type' => 'brands',
+            'route' => '/marcas',
+        ],
+    ];
+
+    $menu_items = [];
+
+    foreach ($categories as $key => $category) {
+        foreach($user->access_level->permissions as $permission) {
+            if ($permission->category->type == $category['type'] && $permission->type == 'view' && $permission->pivot && $permission->pivot->allow == true) {
+                array_push($menu_items, $category);
+            }
+        }
+    }
+@endphp
+
 <aside>
     <h1 class="d-none">AutoGestor</h1>
     <div class="sidebar-logo d-flex justify-content-start mb-5">
@@ -93,7 +133,19 @@
     </div>
     {{-- <hr> --}}
     <div class="menu mt-5">
-        <a class="sidemenu-item" href="{{ url('/niveis-de-acesso') }}">
+        <a class="sidemenu-item" href="{{ url('/') }}">
+            <div class="menu-item mb-2">
+                <h6 class="m-0">Home</h6>
+            </div>
+        </a>
+        @foreach ($menu_items as $item)
+        <a class="sidemenu-item" href="{{ url($item['route']) }}">
+            <div class="menu-item mb-2">
+                <h6 class="m-0">{{ $item['name'] }}</h6>
+            </div>
+        </a>
+        @endforeach
+        {{-- <a class="sidemenu-item" href="{{ url('/niveis-de-acesso') }}">
             <div class="menu-item mb-2">
                 <h6 class="m-0">Níveis de Acesso</h6>
             </div>
@@ -102,7 +154,7 @@
             <div class="menu-item mb-2">
                 <h6 class="m-0">Usuários</h6>
             </div>
-        </a>
+        </a> --}}
     </div>
     <div class="bottom-fixed mb-2">
         <form action="{{ url('/usuarios/logout') }}" method="POST">

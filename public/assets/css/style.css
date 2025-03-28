@@ -71,6 +71,8 @@ header .title {
 
 .inner-container {
     margin: 0 2rem;
+    display: flex;
+    justify-content: center;
 }
 
 .form-container {

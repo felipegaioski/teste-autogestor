@@ -19,4 +19,13 @@ class AccessLevel extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function permissions()
+    {
+        return $this
+        ->belongsToMany('App\Models\UserPermission')
+        ->using('App\Models\AccessLevelUserPermission')
+        ->withPivot('allow')
+        ->with('category');
+    }
 }
