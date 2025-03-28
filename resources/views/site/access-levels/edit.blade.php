@@ -29,19 +29,20 @@
                                 @foreach($access_level->permissions as $permission)
                                 @if($permission->category->id == $category->id)
                                     <div class="col-6">
+                                        <input type="hidden" name="permissions[{{ $permission->id }}][allow]" value="0">
                                         <input 
                                             class="form-check-input permission-checkbox" 
                                             type="checkbox" 
-                                            id="{{ $permission->name }}" 
+                                            id="permission_{{ $permission->id }}" 
                                             name="permissions[{{ $permission->id }}][allow]" 
-                                            value="{{ $permission->pivot->allow ? '1' : '0' }}"
+                                            value="1"
                                             {{ $permission->pivot->allow ? 'checked' : '' }}
-                                            data-permission-id="{{ $permission->id }}"
+                                            {{ ($user->access_level_id == 1 && $access_level->id == 1 && ($permission->category->id == 1 || $permission->category->id == 2)) ? 'disabled' : '' }}
                                         >
-                                        <label class="form-check-label" for="{{ $permission->name }}">
+                                        <label class="form-check-label" for="permission_{{ $permission->id }}" 
+                                            {{ ($user->access_level_id == 1 && $access_level->id == 1 && ($permission->category->id == 1 || $permission->category->id == 2)) ? 'disabled' : '' }}>
                                             {{ $permission->name }}
                                         </label>
-                                        <input type="hidden" name="permissions[{{ $permission->id }}][allow]" value="0" class="hidden-permission-input">
                                     </div>
                                 @endif
                             @endforeach
@@ -61,19 +62,18 @@
             const checkboxes = document.querySelectorAll('.permission-checkbox');
     
             checkboxes.forEach(checkbox => {
-                const permissionId = checkbox.dataset.permissionId;
-                const hiddenInput = document.querySelector(`input[name="permissions[${permissionId}][allow]"][type="hidden"]`);
-    
                 checkbox.addEventListener('change', function() {
+                    const permissionId = this.dataset.permissionId;
+                    const hiddenInput = document.querySelector(`input[name="permissions[${permissionId}][allow]"][type="hidden"]`);
+    
                     if (this.checked) {
-                        this.value = '1';
                         hiddenInput.value = '1';
                     } else {
-                        this.value = '0';
                         hiddenInput.value = '0';
                     }
                 });
             });
         });
     </script>
+    
 @endsection

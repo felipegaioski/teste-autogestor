@@ -81,7 +81,7 @@
             </g>
         </svg>
         </div>
-        <div class="inner-container mt-5">
+        <div class="inner-container mt-5 flex-column">
             <div class="title d-flex justify-content-center">
                 <h1>Login</h1>
             </div>

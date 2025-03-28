@@ -1,3 +1,7 @@
+@php
+    $category_type = 'access_levels'
+@endphp
+
 @extends('site.layout')
 
 @section('content')
@@ -36,11 +40,24 @@
                             <span class="m-0">{{ date('d/m/Y', strtotime($access_level->created_at)) }}</span>
                         </div>
                         <div class="date-container col-1">
+                            @php
+                                $canEdit = false;
+                                foreach ($user->access_level->permissions as $permission) {
+                                    if (($permission->type === 'manage' && $user->access_level->permissions->contains($permission->id) && $permission->pivot->allow
+                                    && $permission->category->type == $category_type)
+                                    || $user->access_level_id == 1) {
+                                        $canEdit = true;
+                                        break;
+                                    }
+                                }
+                            @endphp
+                            @if ($canEdit)
                             <a href="{{ url('niveis-de-acesso/' . $access_level->id . '/editar') }}">
                                 <button class="btn btn-primary">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </button>
                             </a>
+                            @endif
                         </div>
                     </div>
                     @if ($access_levels->count() > 1 && $index < $access_levels->count() - 1)
